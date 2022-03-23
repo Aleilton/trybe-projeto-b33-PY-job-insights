@@ -1,3 +1,4 @@
+# from jobs import read
 from src.jobs import read
 
 
@@ -6,10 +7,8 @@ def get_unique_job_types(path):
     job_types = set()
     for line in file_content:
         job_types.add(line["job_type"])
-    job_types_list = []
-    for job in job_types:
-        job_types_list.append(job)
-    return job_types_list
+    # converter set para list => https://favtutor.com/blogs/set-to-list-python
+    return list(job_types)
 
 
 def filter_by_job_type(jobs, job_type):
@@ -31,21 +30,12 @@ def filter_by_job_type(jobs, job_type):
 
 
 def get_unique_industries(path):
-    """Checks all different industries and returns a list of them
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    list
-        List of unique industries
-    """
-    return []
+    file_content = read(path)
+    industry = set()
+    for line in file_content:
+        if line["industry"] != "":
+            industry.add(line["industry"])
+    return list(industry)
 
 
 def filter_by_industry(jobs, industry):
