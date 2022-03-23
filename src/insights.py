@@ -61,7 +61,8 @@ def get_max_salary(path):
     salaries = set()
     for line in file_content:
         if line["max_salary"] != "":
-            # uso do try: https://stackoverflow.com/questions/1841565/valueerror-invalid-literal-for-int-with-base-10
+            # uso do try: https://stackoverflow.com/questions/1841565
+            # /valueerror-invalid-literal-for-int-with-base-10
             try:
                 salaries.add(float(line["max_salary"]))
             except ValueError:
