@@ -17,6 +17,11 @@ def client(app: Flask) -> FlaskClient:
     return app.test_client()
 
 
+def test_job_view_has_job_information(client: FlaskClient):
+    with open("tests/mocks/job_1.html") as file:
+        assert file.read() == client.get("/job/1").get_data(as_text=True)
+
+
 def test_index_view_status_200(client: FlaskClient):
     assert client.get("/").status_code == 200
 
@@ -88,6 +93,3 @@ def test_job_view_status_200(client: FlaskClient):
         assert client.get(f"/job/{job}").status_code == 200
 
 
-def test_job_view_has_job_information(client: FlaskClient):
-    with open("tests/mocks/job_1.html") as file:
-        assert file.read() == client.get("/job/1").get_data(as_text=True)
